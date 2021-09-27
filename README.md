@@ -64,8 +64,15 @@ branch는 여러개가 있을 수 있고, 원하는 branch로 갈아탈 수 있�
 ```
 git checkout [branch 이름]
 ```
-갈아탄 후에 커밋을 해 주면 head는 새로 갈아탄 branch를 가리키게 된다.  
+갈아탄 후에 커밋을 해 주면, 갈아타기 전의 branch에는 업데이트가 되지 않고, 새로운 branch만 업데이트가 된다.  
 각각의 branch에서 개발을 한 뒤, `merge`를 통해 `master` branch로 변경 사항을 합칠 수 있다.  
+
+branch를 삭제하고 싶은 경우라면, 댜음과 같이 입력한다.
+```
+git branch -d [branch 이름]
+```
+
+TMI) Github에서는 메인 브랜치 이름을 `master`가 아니라  `main`으로 설정해 놓았다.  
 
 ## push
 `head`에 있는 파일을 웹 상의 원격 저장소에 올리기 위해 명령을 실행해야 한다.  
@@ -73,8 +80,8 @@ git checkout [branch 이름]
 ```
 git remote add origin [원격 저장소 주소]
 ```
-origin은 remote repository의 이름을 뜻한다. 다른 이름으로 설정할 수 있다.  
-만약  저장소 주소를 알려준다고 한다면, 
+`origin`은 remote repository의 이름을 뜻한다. 다른 이름으로 설정할 수 있다.  
+만약 이 저장소 주소를 Git에게 알려준다고 한다면, 
 ```
 git remote add origin https://github.com/hgikhg/Git-pratice.git
 ```
@@ -83,10 +90,7 @@ git remote add origin https://github.com/hgikhg/Git-pratice.git
 ```
 git push origin [branch 이름]
 ```
-이것의 의미는 `origin`이라는 원격저장소의 "어떤 이름을 가진 브랜치"에 푸쉬한다는 것이다.  
-Github에서는 메인 브랜치 이름을 `master`가 아니라  `main`으로 설정해 놓았다.  
-
-만약 처음 `push`를 하게 되면 인증 절차(로그인)를 거쳐야 한다.  
+이것의 의미는 `origin`이라는 원격 저장소의 `어떤 이름을 가진 branch`로 `push`한다는 것이다.  
 `push`가 실행되면 로컬 저장소와 원격 저장소는 동일한 상태가 된다. 
 
 ## pull
