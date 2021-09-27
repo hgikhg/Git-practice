@@ -2,7 +2,7 @@
 
 ## 시작
 Git를 설치한 후, Github에 repository를 생성한다.   
-다른 사림들이 볼 수 있게 하려면 public로 설정하고, 그렇지 않을 경우 private로 설정한다.
+다른 사림들이 볼 수 있게 하려면 `public`로 설정하고, 그렇지 않을 경우 `private`로 설정한다.
 
 ## 로컬 저장소 생성
 저장소는 말 그대로 파일이 저장되는 곳이다. 
@@ -41,27 +41,31 @@ git clone [주소] [DIR]
 `commit`은 작업 트리에 있는 파일을 기록하는 게 아니라, 이 인덱스에 있는 파일을 기록하게 된다.  
 `git add [파일]` 또는 `git add *` 을 입력하면 변경된 파일이 인덱스에 반영된다. 
 
+변경 사항은 `git status`를 입력하여 확인할 수 있다.
+
 ### head
 `git commit`을 하게 되면, 파일이 `head`에 반영된다.  
 단, 커밋을 하더라도 원격 저장소에는 반영이 되지 않는다. 
 
+메세지를 포함해야 할 경우, 다음과 같이 입력하면 된다.
+```
+git commit -m "메세지"
+```
+
 ## branch
-Git에서의 branch는
-처음 커밋을 하면 자동으로 `master` branch가 생성된다.  
+Git에서의 branch는 독립적인 작업을 수행하기 위한 작업 공간이다.
+맨 처음으로 Git를 초기화하면 자동으로 `master` branch가 생성된다.  
 
 branch를 만드는 방법은 다음과 같다.
 ``` 
 git branch [branch 이름]
 ```
-branch는 여러개가 있을 수 있지만, head는 한 가지의 branch만을 가리킨다.  
-대신 원하는 branch로 갈아탈 수 있다.
+branch는 여러개가 있을 수 있고, 원하는 branch로 갈아탈 수 있다.  
 ```
 git checkout [branch 이름]
 ```
-갈아탄 후에 커밋을 해 주면 head는 새로 갈아탄 branch를 가리키게 된다. 
-이전의 branch는 이전
-
-
+갈아탄 후에 커밋을 해 주면 head는 새로 갈아탄 branch를 가리키게 된다.  
+각각의 branch에서 개발을 한 뒤, `merge`를 통해 `master` branch로 변경 사항을 합칠 수 있다.  
 
 ## push
 `head`에 있는 파일을 웹 상의 원격 저장소에 올리기 위해 명령을 실행해야 한다.  
@@ -69,7 +73,8 @@ git checkout [branch 이름]
 ```
 git remote add origin [원격 저장소 주소]
 ```
-내 저장소 주소를 알려준다고 한다면, 
+origin은 remote repository의 이름을 뜻한다. 다른 이름으로 설정할 수 있다.  
+만약  저장소 주소를 알려준다고 한다면, 
 ```
 git remote add origin https://github.com/hgikhg/Git-pratice.git
 ```
@@ -78,9 +83,25 @@ git remote add origin https://github.com/hgikhg/Git-pratice.git
 ```
 git push origin [branch 이름]
 ```
+이것의 의미는 `origin`이라는 원격저장소의 "어떤 이름을 가진 브랜치"에 푸쉬한다는 것이다.  
+Github에서는 메인 브랜치 이름을 `master`가 아니라  `main`으로 설정해 놓았다.  
 
-만약 처음 `push`를 하게 되면 인증 절차(로그인)를 걸쳐야 한다.  
+만약 처음 `push`를 하게 되면 인증 절차(로그인)를 거쳐야 한다.  
 `push`가 실행되면 로컬 저장소와 원격 저장소는 동일한 상태가 된다. 
+
+## pull
+원격 저장소의 변경 내용을 로컬 저장소에 적용하려면 `pull`을 사용한다.  
+이때 로컬 저장소로 원격 저장소의 소스를 가져오기만 하는 게 아니라, 가져와서 합치게(`fetch` + `merge`) 된다.
+```
+git pull origin master
+```
+
+## merge
+다른 branch에 있는 내용을 현재 branch와 병합하는 것이다.
+```
+git merge [branch 이름]
+```
+
 
 
 
